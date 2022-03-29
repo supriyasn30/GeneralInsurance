@@ -2,9 +2,13 @@ package com.lti.appl.generalinsurance.beans;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -23,13 +27,16 @@ public class Claims
 	@Column(name="CLAIM_DATE")
 	private Date claimDate;
 	
-	@Column(name="POLICY_ID")
+	@ManyToOne(fetch=FetchType.LAZY,cascade={CascadeType.ALL})
+	@JoinColumn(name="POLICY_ID")
 	private Policies pID;
 	
-	@Column(name="VEHICLE_ID")
+	@ManyToOne(fetch=FetchType.LAZY,cascade={CascadeType.ALL})
+	@JoinColumn(name="VEHICLE_ID")
 	private Vehicle vID;
 	
-	@Column(name="PLAN_ID")
+	@ManyToOne(fetch=FetchType.LAZY,cascade={CascadeType.ALL})
+	@JoinColumn(name="PLAN_ID")
 	private Plans planID;
 
 	public int getClaimID() {

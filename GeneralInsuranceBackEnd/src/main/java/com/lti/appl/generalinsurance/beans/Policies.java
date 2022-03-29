@@ -2,9 +2,13 @@ package com.lti.appl.generalinsurance.beans;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -33,10 +37,12 @@ public class Policies
 	@Column(name="AMOUNT", length=8)
 	private double amount;
 	
-	@Column(name="PLAN_ID")
+	@ManyToOne(fetch=FetchType.LAZY,cascade={CascadeType.ALL})
+	@JoinColumn(name="PLAN_ID")
 	private Plans planID;
 	
-	@Column(name="ADMIN_ID")
+	@ManyToOne(fetch=FetchType.LAZY,cascade={CascadeType.ALL})
+	@JoinColumn(name="ADMIN_ID")
 	private Admins adminID;
 
 	public int getpID() {

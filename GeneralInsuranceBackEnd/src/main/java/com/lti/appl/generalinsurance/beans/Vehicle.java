@@ -2,10 +2,15 @@ package com.lti.appl.generalinsurance.beans;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name="VEHICLES")
@@ -40,7 +45,9 @@ public class Vehicle
 	@Column(name="VEHICLE_TYPE",length=10)
 	private String vType;
 	
-	@Column(name="REG_ID")
+	//@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) 
+	@ManyToOne(fetch=FetchType.LAZY,cascade={CascadeType.ALL})  
+	@JoinColumn(name="REG_ID")
 	private Registration regID;
 
 	public int getvID() {
